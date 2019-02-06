@@ -8,8 +8,6 @@
 #
 ##
 
-cd ~/
-
 touch .env
 source .env
 
@@ -51,4 +49,4 @@ pushd httpd-gateway;
 make setup;
 
 #Reboot
-sudo shutdown -r now;
+#sudo shutdown -r now;
