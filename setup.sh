@@ -5,7 +5,9 @@
 # @see https://gist.github.com/gpupo/388b03f247f030969135c0819e87a990
 #
 # Usage:
-#
+# git clone https://gist.github.com/388b03f247f030969135c0819e87a990.git /tmp/gist;
+# cd  /tmp/gist;
+# bash setup.sh;
 ##
 
 cat .bash_aliases > ~/.bash_aliases;
@@ -48,6 +50,9 @@ popd;
 git clone https://github.com/gpupo/httpd-gateway.git;
 pushd httpd-gateway;
 make setup;
+
+
+rm -Rf /tmp/crontab /tmp/gist;
 
 #Reboot
 #sudo shutdown -r now;
