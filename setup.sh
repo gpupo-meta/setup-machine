@@ -8,8 +8,9 @@
 #
 ##
 
-touch .env
-source .env
+cat .bash_aliases > ~/.bash_aliases;
+cat .env > ~/.env;
+cd ~ && source .env
 
 sudo yum update -y && sudo yum install -y git-core;
 sudo amazon-linux-extras install docker -y;
