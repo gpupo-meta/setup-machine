@@ -11,6 +11,7 @@
 cat .bash_aliases > ~/.bash_aliases;
 cat .env > ~/.env;
 cd ~ && source .env
+ec2InstanceId=$(ec2-metadata --instance-id | cut -d " " -f 2);
 
 sudo yum update -y && sudo yum install -y git-core;
 sudo amazon-linux-extras install docker -y;
@@ -50,7 +51,10 @@ pushd httpd-gateway;
 make setup;
 
 
+# SSH Key
+ssh-keygen -t rsa -b 4096 -C ${ec2InstanceId}
+cat ~/.ssh/id_rsa.pub
+
+#Clean
 rm -Rf /tmp/crontab /tmp/gist;
 
-#Reboot
-#sudo shutdown -r now;
