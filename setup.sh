@@ -8,8 +8,8 @@
 # git clone https://gist.github.com/388b03f247f030969135c0819e87a990.git /tmp/gist && cd /tmp/gist && bash setup.sh;
 ##
 
-cat .bash_aliases > ~/.bash_aliases;
-cat .env > ~/.env;
+cat bin/.bash_aliases > ~/.bash_aliases;
+cat config/.env > ~/.env;
 cd ~ && source .env
 ec2InstanceId=$(ec2-metadata --instance-id | cut -d " " -f 2);
 
@@ -57,4 +57,3 @@ cat ~/.ssh/id_rsa.pub
 
 #Clean
 rm -Rf /tmp/crontab /tmp/gist;
-
