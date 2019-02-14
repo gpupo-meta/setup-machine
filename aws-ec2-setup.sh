@@ -40,7 +40,7 @@ crontab -l;
 
 
 # Httpd Gateway
-popd;
+cd ~;
 git clone https://github.com/gpupo/httpd-gateway.git;
 pushd httpd-gateway;
 make setup;
