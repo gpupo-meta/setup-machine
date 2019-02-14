@@ -1,5 +1,5 @@
-#Setup new AWS EC2 (v2) instance to run Docker
+# setup-machine
 
-## Usage:
+## Setup new AWS EC2 (v2) instance to run Docker
 
-  git clone https://gist.github.com/388b03f247f030969135c0819e87a990.git /tmp/gist && cd /tmp/gist && bash setup.sh;
+  git clone https://github.com/gpupo/setup-machine.git /tmp/setup-machine && cd /tmp/setup-machine && bash aws-ec2-setup.sh;
