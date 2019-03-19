@@ -4,9 +4,12 @@
 ##
 
 cat bin/.bash_aliases > ~/.bash_aliases;
+
 cat config/.env > ~/.env;
 cd ~ && source .env
 mkdir -p ~/workspace/
+
+sudo cp debian/sources.list /etc/apt/sources.list;
 
 sudo apt-get -y install  python apt-utils iputils-ping telnet openssh-server \
     apt-transport-https \
@@ -52,3 +55,7 @@ sudo dpkg -i /tmp/atom-amd64.deb && rm /tmp/atom-amd64.deb;
 #Chrome
 wget  --progress=bar https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb -O /tmp/google-chrome-stable_current_amd64.deb;
 sudo dpkg -i /tmp/google-chrome-stable_current_amd64.deb && rm /tmp/google-chrome-stable_current_amd64.deb;
+
+#Locate
+sudo apt-get install locate;
+sudo updatedb;
