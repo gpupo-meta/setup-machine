@@ -61,8 +61,10 @@ command -v apm >/dev/null 2>&1 || {
 }
 
 #Atom config and packages
-apm install --packages-file debian/apm-packages
-cat debian/atom-config.cson > ~/.atom/config.cson
+if [ ! -d ~/.atom/packages/language-dotenv ]; then
+  apm install --packages-file debian/apm-packages
+  cat debian/atom-config.cson > ~/.atom/config.cson
+fi
 
 #Chrome
 command -v chrome-gnome-shell >/dev/null 2>&1 || {
