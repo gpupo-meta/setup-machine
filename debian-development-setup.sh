@@ -5,13 +5,15 @@
 
 cat bin/.bash_aliases > ~/.bash_aliases;
 
+sudo cp -f debian/sources.list /etc/apt/sources.list;
+
 cat config/.env > ~/.env;
 cd ~ && source .env
 mkdir -p ~/workspace/
 
-sudo cp debian/sources.list /etc/apt/sources.list;
+sudo apt-get update;
 
-sudo apt-get -y install  python apt-utils iputils-ping telnet openssh-server \
+sudo apt-get -y install curl python apt-utils iputils-ping telnet openssh-server \
     apt-transport-https \
     ca-certificates \
     curl wget\
