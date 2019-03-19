@@ -13,11 +13,11 @@ mkdir -p ~/workspace/
 
 sudo apt-get update;
 
-sudo apt-get -y install curl python apt-utils iputils-ping telnet openssh-server \
+sudo apt-get -y install libcurl3 gconf2 curl python apt-utils iputils-ping telnet openssh-server \
     apt-transport-https \
     ca-certificates \
-    curl wget\
-    gnupg2 git-all git-cola \
+    wget gnupg2 \
+    git-all git-cola \
     software-properties-common \
     inkscape clang-format-3.8 gimp firefox-esr libappindicator3-1 \
     libindicator3-7 libdbusmenu-glib4 libdbusmenu-gtk3-4;
@@ -25,6 +25,11 @@ sudo apt-get -y install curl python apt-utils iputils-ping telnet openssh-server
 curl -fsSL https://download.docker.com/linux/debian/gpg | sudo apt-key add -
 sudo apt-key fingerprint 0EBFCD88
 sudo groupadd docker
+sudo usermod -aG docker $USER
+
+#Docker
+curl -fsSL https://get.docker.com -o /tmp/get-docker.sh
+sudo sh /tmp/get-docker.sh
 sudo usermod -aG docker $USER
 
 #docker-compose
@@ -61,3 +66,6 @@ sudo dpkg -i /tmp/google-chrome-stable_current_amd64.deb && rm /tmp/google-chrom
 #Locate
 sudo apt-get install locate;
 sudo updatedb;
+
+
+sudo apt --fix-broken install;
