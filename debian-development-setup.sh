@@ -9,7 +9,7 @@ cat config/.env > ~/.env;
 pushd ~ && source .env;
 popd;
 mkdir -p ~/workspace/
-sudo apt-get update;
+sudo apt-get -q update;
 
 sudo apt-get -y install libcurl3 gconf2 curl python apt-utils iputils-ping telnet openssh-server \
     apt-transport-https \
@@ -74,6 +74,17 @@ command -v chrome-gnome-shell >/dev/null 2>&1 || {
 command -v locate >/dev/null 2>&1 || {
   sudo apt-get install locate;
   sudo updatedb;
+}
+
+#PHP and xtras
+command -v php >/dev/null 2>&1 || {
+
+  sudo apt-get install -y apt-utils iputils-ping procps\
+    unzip zlib1g-dev libpng-dev libjpeg-dev gettext-base libxml2-dev libzip-dev \
+    libmcrypt-dev mysql-client libicu-dev \
+    libcurl4-openssl-dev pkg-config libssl-dev telnet vim netcat \
+    php-intl php-gd php-apcu php-zip;
+
 }
 
 sudo apt --fix-broken install;
