@@ -20,52 +20,60 @@ sudo apt-get -y install libcurl3 gconf2 curl python apt-utils iputils-ping telne
     inkscape clang-format-3.8 gimp firefox-esr libappindicator3-1 \
     libindicator3-7 libdbusmenu-glib4 libdbusmenu-gtk3-4;
 
-curl -fsSL https://download.docker.com/linux/debian/gpg | sudo apt-key add -
-sudo apt-key fingerprint 0EBFCD88
-sudo groupadd docker
-sudo usermod -aG docker $USER
-
 #Docker
-curl -fsSL https://get.docker.com -o /tmp/get-docker.sh
-sudo sh /tmp/get-docker.sh
-sudo usermod -aG docker $USER
-
+command -v docker >/dev/null 2>&1 || {
+  curl -fsSL https://get.docker.com -o /tmp/get-docker.sh;
+  sudo sh /tmp/get-docker.sh;
+  sudo groupadd docker;
+  sudo usermod -aG docker $USER;
+}
 #docker-compose
-sudo rm /usr/bin/docker-compose
-sudo curl -L https://github.com/docker/compose/releases/download/1.21.2/docker-compose-$(uname -s)-$(uname -m) -o /usr/local/bin/docker-compose;
-sudo chmod +x /usr/local/bin/docker-compose;
-sudo ln -snf /usr/local/bin/docker-compose /usr/bin/docker-compose ;
-docker-compose version;
-
+command -v docker-compose >/dev/null 2>&1 || {
+  sudo rm /usr/bin/docker-compose
+  sudo curl -L https://github.com/docker/compose/releases/download/1.21.2/docker-compose-$(uname -s)-$(uname -m) -o /usr/local/bin/docker-compose;
+  sudo chmod +x /usr/local/bin/docker-compose;
+  sudo ln -snf /usr/local/bin/docker-compose /usr/bin/docker-compose ;
+  docker-compose version;
+}
 
 # Httpd Gateway
-pushd ~ && git clone https://github.com/gpupo/httpd-gateway.git && pushd httpd-gateway && make setup;
-popd;
+if [ ! -d ~/httpd-gateway ]; then
+  pushd ~ && git clone https://github.com/gpupo/httpd-gateway.git && pushd httpd-gateway && make setup;
+  popd;
+fi
 
 # SSH Key
-ssh-keygen -t rsa -b 4096 -C "${USER}@debian"
-cat ~/.ssh/id_rsa.pub
+if [ ! -f ~/.ssh/id_rsa.pub ]; then
+  ssh-keygen -t rsa -b 4096 -C "${USER}@debian";
+  cat ~/.ssh/id_rsa.pub;
+fi
 
 #ATOM
-LatestUrlRedirection="$(curl https://github.com/atom/atom/releases/latest)"
-LatestVersionUrl="$(grep -o -E 'href="([^"#]+)"' <<< $LatestUrlRedirection)"
-PrefixUrlForDownload="$(cut -d'"' -f2 <<< $LatestVersionUrl)"
-PrefixUrlForDownload="$(awk '{gsub(/tag/,"download")}1' <<< $PrefixUrlForDownload)"
-SufixUrlForDownload="/atom-amd64.deb"
-UrlForDownload="$PrefixUrlForDownload$SufixUrlForDownload"
-wget --progress=bar $UrlForDownload -O /tmp/atom-amd64.deb;
-sudo dpkg -i /tmp/atom-amd64.deb && rm /tmp/atom-amd64.deb;
+command -v apm >/dev/null 2>&1 || {
+  LatestUrlRedirection="$(curl https://github.com/atom/atom/releases/latest)"
+  LatestVersionUrl="$(grep -o -E 'href="([^"#]+)"' <<< $LatestUrlRedirection)"
+  PrefixUrlForDownload="$(cut -d'"' -f2 <<< $LatestVersionUrl)"
+  PrefixUrlForDownload="$(awk '{gsub(/tag/,"download")}1' <<< $PrefixUrlForDownload)"
+  SufixUrlForDownload="/atom-amd64.deb"
+  UrlForDownload="$PrefixUrlForDownload$SufixUrlForDownload"
+  wget --progress=bar $UrlForDownload -O /tmp/atom-amd64.deb;
+  sudo dpkg -i /tmp/atom-amd64.deb && rm /tmp/atom-amd64.deb;
+}
 
 #Atom config and packages
 apm install --packages-file debian/apm-packages
 cat debian/atom-config.cson > ~/.atom/config.cson
 
 #Chrome
-wget  --progress=bar https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb -O /tmp/google-chrome-stable_current_amd64.deb;
-sudo dpkg -i /tmp/google-chrome-stable_current_amd64.deb && rm /tmp/google-chrome-stable_current_amd64.deb;
+command -v chrome-gnome-shell >/dev/null 2>&1 || {
+  wget  --progress=bar https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb -O /tmp/google-chrome-stable_current_amd64.deb;
+  sudo dpkg -i /tmp/google-chrome-stable_current_amd64.deb && rm /tmp/google-chrome-stable_current_amd64.deb;
+}
 
 #Locate
-sudo apt-get install locate;
-sudo updatedb;
+command -v locate >/dev/null 2>&1 || {
+  sudo apt-get install locate;
+  sudo updatedb;
+}
 
 sudo apt --fix-broken install;
