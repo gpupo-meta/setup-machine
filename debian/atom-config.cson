@@ -1,0 +1,28 @@
+"*":
+  core:
+    ignoredNames: [
+      ".git"
+      ".hg"
+      ".svn"
+      ".DS_Store"
+      "._*"
+      "Thumbs.db"
+      "desktop.ini"
+      "vendor"
+      "*.lock"
+      "*.cache"
+      "var"
+    ]
+    telemetryConsent: "no"
+  editor: {}
+  "exception-reporting":
+    userId: "c2aa4951-1170-44eb-a939-a70a7e498221"
+  "language-dotenv":
+    dotenvFileNames: [
+      ".env"
+      ".env.local"
+      ".env.test"
+      ".env.local"
+    ]
+  welcome:
+    showOnStartup: false

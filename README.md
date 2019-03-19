@@ -11,4 +11,10 @@
 
   apt-get -y install sudo git;
 
+  usermod -aG sudo $USER;
+
+
+Logout ... login ... and run:
+
+
   git clone https://github.com/gpupo-meta/setup-machine.git /tmp/setup-machine && cd /tmp/setup-machine && bash debian-development-setup.sh;

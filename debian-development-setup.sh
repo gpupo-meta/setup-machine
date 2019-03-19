@@ -4,13 +4,11 @@
 ##
 
 cat bin/.bash_aliases > ~/.bash_aliases;
-
 sudo cp -f debian/sources.list /etc/apt/sources.list;
-
 cat config/.env > ~/.env;
-cd ~ && source .env
+pushd ~ && source .env;
+popd;
 mkdir -p ~/workspace/
-
 sudo apt-get update;
 
 sudo apt-get -y install libcurl3 gconf2 curl python apt-utils iputils-ping telnet openssh-server \
@@ -41,12 +39,12 @@ docker-compose version;
 
 
 # Httpd Gateway
-cd ~ && git clone https://github.com/gpupo/httpd-gateway.git && pushd httpd-gateway && make setup;
+pushd ~ && git clone https://github.com/gpupo/httpd-gateway.git && pushd httpd-gateway && make setup;
+popd;
 
 # SSH Key
 ssh-keygen -t rsa -b 4096 -C "${USER}@debian"
 cat ~/.ssh/id_rsa.pub
-
 
 #ATOM
 LatestUrlRedirection="$(curl https://github.com/atom/atom/releases/latest)"
@@ -58,6 +56,9 @@ UrlForDownload="$PrefixUrlForDownload$SufixUrlForDownload"
 wget --progress=bar $UrlForDownload -O /tmp/atom-amd64.deb;
 sudo dpkg -i /tmp/atom-amd64.deb && rm /tmp/atom-amd64.deb;
 
+#Atom config and packages
+apm install --packages-file debian/apm-packages
+cat debian/atom-config.cson > ~/.atom/config.cson
 
 #Chrome
 wget  --progress=bar https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb -O /tmp/google-chrome-stable_current_amd64.deb;
@@ -66,6 +67,5 @@ sudo dpkg -i /tmp/google-chrome-stable_current_amd64.deb && rm /tmp/google-chrom
 #Locate
 sudo apt-get install locate;
 sudo updatedb;
-
 
 sudo apt --fix-broken install;
