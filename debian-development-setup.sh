@@ -3,22 +3,24 @@
 # Setup new Debian to run Docker and Development Tools
 ##
 
-cat bin/.bash_aliases > ~/.bash_aliases;
-sudo cp -f debian/sources.list /etc/apt/sources.list;
-cat config/.env > ~/.env;
-pushd ~ && source .env;
-popd;
-mkdir -p ~/workspace/
-sudo apt-get -q update;
+command -v make >/dev/null 2>&1 || {
+  cat bin/.bash_aliases > ~/.bash_aliases;
+  sudo cp -f debian/sources.list /etc/apt/sources.list;
+  cat config/.env > ~/.env;
+  pushd ~ && source .env;
+  popd;
+  mkdir -p ~/workspace/
+  sudo apt-get -q update;
 
-sudo apt-get -y install libcurl3 gconf2 curl python apt-utils iputils-ping telnet openssh-server \
-    apt-transport-https \
-    ca-certificates \
-    wget gnupg2 \
-    git-all git-cola \
-    software-properties-common \
-    inkscape clang-format-3.8 gimp firefox-esr libappindicator3-1 \
-    libindicator3-7 libdbusmenu-glib4 libdbusmenu-gtk3-4;
+  sudo apt-get -y install libcurl3 gconf2 curl python apt-utils iputils-ping telnet openssh-server \
+      apt-transport-https \
+      ca-certificates \
+      wget gnupg2 \
+      git-all git-cola make \
+      software-properties-common \
+      inkscape clang-format-3.8 gimp firefox-esr libappindicator3-1 \
+      libindicator3-7 libdbusmenu-glib4 libdbusmenu-gtk3-4;
+}
 
 #Docker
 command -v docker >/dev/null 2>&1 || {
@@ -84,18 +86,17 @@ command -v php >/dev/null 2>&1 || {
     unzip zlib1g-dev libpng-dev libjpeg-dev gettext-base libxml2-dev libzip-dev \
     libmcrypt-dev mysql-client libicu-dev \
     libcurl4-openssl-dev pkg-config libssl-dev telnet vim netcat \
-    php-intl php-gd php-apcu php-zip;
+    php-intl php-gd php-apcu php-zip php-xml;
 }
 
 #Composer
 command -v composer >/dev/null 2>&1 || {
   php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
-  php -r "if (hash_file('SHA384', 'composer-setup.php') === '544e09ee996cdf60ece3804abc52599c22b1f40f4323403c44d44fdfdd586475ca9813a858088ffbc1f233e9b180f061') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;";
-  php composer-setup.php;
+  php -r "if (hash_file('sha384', 'composer-setup.php') === '48e3236262b34d30969dca3c37281b3b4bbe3221bda826ac6a9a62d6444cdb0dcd0615698a5cbe587c3f0fe57a54d8f5') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;"
+  php composer-setup.php
   php -r "unlink('composer-setup.php');"
   sudo mkdir -p /usr/local/bin/;
   sudo mv -v composer.phar /usr/local/bin/composer; sudo chmod +x /usr/local/bin/composer;
-  composer global require bamarni/symfony-console-autocomplete:dev-master;
 }
 
 sudo apt --fix-broken install;
