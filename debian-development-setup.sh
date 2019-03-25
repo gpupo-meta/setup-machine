@@ -15,7 +15,7 @@ command -v make >/dev/null 2>&1 || {
   sudo apt-get -y install libcurl3 gconf2 curl python apt-utils iputils-ping telnet openssh-server \
       apt-transport-https \
       ca-certificates \
-      wget gnupg2 \
+      wget gnupg2 tree \
       git-all git-cola make \
       software-properties-common \
       inkscape clang-format-3.8 gimp firefox-esr libappindicator3-1 \
@@ -97,6 +97,15 @@ command -v composer >/dev/null 2>&1 || {
   php -r "unlink('composer-setup.php');"
   sudo mkdir -p /usr/local/bin/;
   sudo mv -v composer.phar /usr/local/bin/composer; sudo chmod +x /usr/local/bin/composer;
+}
+
+#vscode
+command -v code >/dev/null 2>&1 || {
+  curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.gpg
+  sudo install -o root -g root -m 644 microsoft.gpg /etc/apt/trusted.gpg.d/
+  sudo sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main" > /etc/apt/sources.list.d/vscode.list'
+  sudo apt-get update
+  sudo apt-get install code
 }
 
 sudo apt --fix-broken install;
