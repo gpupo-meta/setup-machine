@@ -16,5 +16,5 @@ sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubun
 sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu cosmic stable"
 
 sudo apt-get update;
-sudo apt-get install docker-ce docker-ce-cli containerd.io;
+sudo apt-get -y install docker-ce docker-ce-cli containerd.io;
 source ./debian/common-setup.sh;

@@ -25,8 +25,8 @@ command -v apm >/dev/null 2>&1 || {
 
 #Atom config and packages
 if [ ! -d ~/.atom/packages/language-dotenv ]; then
-  apm install --packages-file debian/apm-packages
-  cat debian/atom-config.cson > ~/.atom/config.cson
+  apm install --packages-file $PWD/debian/apm-packages
+  cat $PWD/debian/atom-config.cson > ~/.atom/config.cson
 fi
 
 #Chrome
