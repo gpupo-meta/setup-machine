@@ -2,12 +2,13 @@
 # Httpd Gateway
 if [ ! -d ~/httpd-gateway ]; then
   pushd ~ && git clone https://github.com/gpupo/httpd-gateway.git && pushd httpd-gateway && make setup;
+  mkdir ~/workspace;
   popd;
 fi
 
 # SSH Key
 if [ ! -f ~/.ssh/id_rsa.pub ]; then
-  ssh-keygen -t rsa -b 4096 -C "${USER}@debian";
+  ssh-keygen -t rsa -b 4096 -C "${USER}@${HOSTNAME}";
   cat ~/.ssh/id_rsa.pub;
 fi
 
@@ -25,8 +26,8 @@ command -v apm >/dev/null 2>&1 || {
 
 #Atom config and packages
 if [ ! -d ~/.atom/packages/language-dotenv ]; then
-  apm install --packages-file $PWD/debian/apm-packages
-  cat $PWD/debian/atom-config.cson > ~/.atom/config.cson
+  apm install --packages-file /tmp/setup-machine/debian/apm-packages
+  cat /tmp/setup-machine/debian/atom-config.cson > ~/.atom/config.cson
 fi
 
 #Chrome
@@ -43,6 +44,7 @@ command -v locate >/dev/null 2>&1 || {
 
 #PHP and xtras
 command -v php >/dev/null 2>&1 || {
+  sudo apt --fix-broken install;
   sudo apt-get install -y apt-utils iputils-ping procps\
     unzip zlib1g-dev libpng-dev libjpeg-dev gettext-base libxml2-dev libzip-dev \
     libmcrypt-dev mysql-client libicu-dev \
