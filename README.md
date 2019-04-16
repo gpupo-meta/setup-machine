@@ -1,10 +1,21 @@
 # Setup Machine scripts
 
-## Setup new __AWS EC2 (v2)__ instance to run Docker
+Scripts that configure a super cool environment
 
-    git clone https://github.com/gpupo-meta/setup-machine.git /tmp/setup-machine && cd /tmp/setup-machine && bash aws-ec2-setup.sh;
+## Development environments
 
-## Setup new __Debian__ Developer Machine
+Install and configure:
+
+* docker & docker-compose
+* php 7 & composer
+* Atom
+* Microsoft Vscode
+* Unix like tools
+* git + setup new **ssk key**
+* [httpd-gateway](https://opensource.gpupo.com/httpd-gateway/)
+* [custom bash aliases](https://github.com/gpupo-meta/setup-machine/blob/master/bin/.bash_aliases)
+
+### Setup new __Debian__ Developer Machine
 
     su -;
     apt-get -y install sudo git;
@@ -14,10 +25,25 @@ Logout, login and run:
 
     git clone https://github.com/gpupo-meta/setup-machine.git /tmp/setup-machine && cd /tmp/setup-machine && bash ./debian-development-setup.sh;
 
-## Setup new __Ubuntu__ Developer Machine
+### Setup new __Ubuntu__ Developer Machine
 
 Tested with **Ubuntu 19.04 Disco Dingo**
 
     sudo apt-get -y install git;
 
     git clone https://github.com/gpupo-meta/setup-machine.git /tmp/setup-machine && cd /tmp/setup-machine && bash ./ubuntu-development-setup.sh;
+
+
+## Production environments
+
+Install and configure:
+
+* aws-scripts-mon
+* docker & docker-compose
+* setup new **ssk key**
+* [httpd-gateway](https://opensource.gpupo.com/httpd-gateway/)
+* [custom bash aliases](https://github.com/gpupo-meta/setup-machine/blob/master/bin/.bash_aliases)
+
+### Setup new __AWS EC2 (v2)__ instance to run Docker
+
+    git clone https://github.com/gpupo-meta/setup-machine.git /tmp/setup-machine && cd /tmp/setup-machine && bash aws-ec2-setup.sh;

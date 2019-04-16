@@ -30,14 +30,4 @@ command -v docker >/dev/null 2>&1 || {
   sudo usermod -aG docker $USER;
 }
 
-#docker-compose
-command -v docker-compose >/dev/null 2>&1 || {
-  sudo rm /usr/bin/docker-compose
-  sudo curl -L https://github.com/docker/compose/releases/download/1.21.2/docker-compose-$(uname -s)-$(uname -m) -o /usr/local/bin/docker-compose;
-  sudo chmod +x /usr/local/bin/docker-compose;
-  sudo ln -snf /usr/local/bin/docker-compose /usr/bin/docker-compose ;
-  docker-compose version;
-}
-
-
 source ./debian/common-setup.sh;

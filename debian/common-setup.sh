@@ -1,4 +1,11 @@
 
+#docker-compose
+sudo rm /usr/bin/docker-compose > /dev/null
+sudo curl -L https://github.com/docker/compose/releases/download/1.21.2/docker-compose-$(uname -s)-$(uname -m) -o /usr/local/bin/docker-compose;
+sudo chmod +x /usr/local/bin/docker-compose;
+sudo ln -snf /usr/local/bin/docker-compose /usr/bin/docker-compose ;
+docker-compose version;
+
 # Httpd Gateway
 if [ ! -d ~/httpd-gateway ]; then
   pushd ~ && git clone https://github.com/gpupo/httpd-gateway.git && pushd httpd-gateway && make setup;
