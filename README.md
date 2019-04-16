@@ -23,7 +23,9 @@ Install and configure:
 
 Logout, login and run:
 
-    git clone https://github.com/gpupo-meta/setup-machine.git /tmp/setup-machine && cd /tmp/setup-machine && bash ./debian-development-setup.sh;
+    git clone https://github.com/gpupo-meta/setup-machine.git /tmp/setup-machine;
+    cd /tmp/setup-machine;
+    bash ./debian-development-setup.sh;
 
 ### Setup new __Ubuntu__ Developer Machine
 
