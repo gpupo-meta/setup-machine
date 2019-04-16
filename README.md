@@ -17,11 +17,13 @@ Install and configure:
 
 ### Setup new __Debian__ Developer Machine
 
+Tested with **Debian 9 Stretch**
+
     su -;
     apt-get -y install sudo git;
     usermod -aG sudo $USER;
 
-Logout, login and run:
+``Logout``, ``login`` and run:
 
     git clone https://github.com/gpupo-meta/setup-machine.git /tmp/setup-machine;
     cd /tmp/setup-machine;
@@ -29,7 +31,7 @@ Logout, login and run:
 
 ### Setup new __Ubuntu__ Developer Machine
 
-Tested with **Ubuntu 19.04 Disco Dingo**
+Tested with **Ubuntu 19 Disco Dingo**
 
     sudo apt-get -y install git;
 
