@@ -17,4 +17,7 @@ sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubun
 
 sudo apt-get update;
 sudo apt-get -y install docker-ce docker-ce-cli containerd.io;
+sudo groupadd docker;
+sudo usermod -aG docker $USER;
+
 source ./debian/common-setup.sh;
