@@ -50,5 +50,10 @@ make setup;
 ssh-keygen -t rsa -b 4096 -C ${ec2InstanceId}
 cat ~/.ssh/id_rsa.pub
 
+## Bash
+cat bin/.bash_profile > ~/.bash_profile
+test -f ~/ec2-name || echo 'undefined-hostname-at-ec2-name-file' > ~/ec2-name
+source ~/.bash_profile;
+
 #Clean
 rm -Rf /tmp/crontab /tmp/gist;
