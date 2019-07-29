@@ -18,6 +18,10 @@ alias dc-down='docker-compose down'
 alias docker-stop-all='docker stop $(docker ps -a -q)'
 alias docker-remove-all='docker rmi $(docker images -a -q)'
 
+alias docker-container-stats='docker ps -q | xargs  docker stats --no-stream';
+
+
+
 ## Docker services
 alias php-fpm-service='docker run -v "$PWD":/var/www/app --rm gpupo/container-orchestration:symfony-dev-v1.6.0'
 alias composer='php-fpm-service composer'

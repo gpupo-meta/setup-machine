@@ -52,6 +52,7 @@ Install and configure:
 
 ### Setup new __AWS EC2 (v2)__ instance to run Docker
 
+    sudo yum install -y git;
     git clone https://github.com/gpupo-meta/setup-machine.git /tmp/setup-machine;
     cd /tmp/setup-machine;
     bash aws-ec2-setup.sh;
