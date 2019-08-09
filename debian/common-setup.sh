@@ -56,6 +56,7 @@ command -v php >/dev/null 2>&1 || {
     unzip zlib1g-dev libpng-dev libjpeg-dev gettext-base libxml2-dev libzip-dev \
     libmcrypt-dev mysql-client libicu-dev \
     libcurl4-openssl-dev pkg-config libssl-dev telnet vim netcat \
+    kcachegrind \
     php-intl php-gd php-apcu php-zip php-xml libmariadbclient-dev;
 }
 
