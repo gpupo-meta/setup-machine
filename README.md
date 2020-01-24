@@ -13,7 +13,7 @@ Install and configure:
 * Unix like tools
 * git + setup new **ssk key**
 * [httpd-gateway](https://opensource.gpupo.com/httpd-gateway/)
-* [custom bash aliases](https://github.com/gpupo-meta/setup-machine/blob/master/bin/.bash_aliases)
+* [custom bash aliases](https://github.com/gpupo/setup-machine/blob/master/bin/.bash_aliases)
 
 ### Setup new __Debian__ Developer Machine
 
@@ -25,7 +25,7 @@ Tested with **Debian 9 Stretch**
 
 ``Logout``, ``login`` and run:
 
-    git clone https://github.com/gpupo-meta/setup-machine.git /tmp/setup-machine;
+    git clone https://github.com/gpupo/setup-machine.git /tmp/setup-machine;
     cd /tmp/setup-machine;
     bash ./debian-development-setup.sh;
 
@@ -35,7 +35,7 @@ Tested with **Ubuntu 19 Disco Dingo**
 
     sudo apt-get -y install git;
 
-    git clone https://github.com/gpupo-meta/setup-machine.git /tmp/setup-machine;
+    git clone https://github.com/gpupo/setup-machine.git /tmp/setup-machine;
     cd /tmp/setup-machine;
     bash ./ubuntu-development-setup.sh;
 
@@ -48,10 +48,10 @@ Install and configure:
 * docker & docker-compose
 * setup new **ssk key**
 * [httpd-gateway](https://opensource.gpupo.com/httpd-gateway/)
-* [custom bash aliases](https://github.com/gpupo-meta/setup-machine/blob/master/bin/.bash_aliases)
+* [custom bash aliases](https://github.com/gpupo/setup-machine/blob/master/bin/.bash_aliases)
 
 ### Setup new __AWS EC2 (v2)__ instance to run Docker
 
     sudo yum update -y && sudo yum install -y git && \
-    git clone https://github.com/gpupo-meta/setup-machine.git /tmp/setup-machine && \
+    git clone https://github.com/gpupo/setup-machine.git /tmp/setup-machine && \
     cd /tmp/setup-machine && bash aws-ec2-setup.sh;
